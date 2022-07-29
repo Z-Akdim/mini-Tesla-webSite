@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import Fade from 'react-reveal/Fade';
 
 function Section({ title, description, backgroundImg, leftBtnText, rightBtnText }) {
   return (
     <Wrap bgImage= { backgroundImg }>
-        <ItemText>
-            <h1>{ title }</h1>
-            <p>{ description }</p>
-        </ItemText>
+      {/* bottom : begian animation the ItemText from bottom to top*/}
+      <Fade bottom> 
+          <ItemText>
+              <h1>{ title }</h1>
+              <p>{ description }</p>
+          </ItemText>
+      </Fade>
         <Buttons>
+          <Fade bottom>
             <ButtonGroub>
               <LeftBoutton>
                 { leftBtnText }
@@ -21,6 +25,7 @@ function Section({ title, description, backgroundImg, leftBtnText, rightBtnText 
               }
             </ButtonGroub>
             <DownArrow src="./images/down-arrow.svg" />
+          </Fade>
         </Buttons>
           
     </Wrap>
@@ -43,8 +48,8 @@ const Wrap = styled.div`
 `
 
 const ItemText = styled.div`
-  padding-top: 15vh;
-  text-align: center;
+padding-top: 15vh;
+text-align: center;
 `
 
 const ButtonGroub = styled.div`
