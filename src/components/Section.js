@@ -42,6 +42,7 @@ const Wrap = styled.div`
   background-repeat : no-repeat;
   background-image: ${props => `url("/images/${props.bgImage}")`};
   display: flex;
+  object-fit: cover;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
