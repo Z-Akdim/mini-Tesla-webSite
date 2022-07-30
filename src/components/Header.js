@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Header() {
+  const [open, setOpen] = useState(false)
   return (
     <Container>
       <a>
@@ -17,9 +19,12 @@ function Header() {
       <RightMenu>
         <a href="#">Shop</a>
         <a href="#">Tesla Account</a>
-        <CustomMenu />
+        <CustomMenu onClick={()=>setOpen(true)}/>
       </RightMenu>
-      <SideBar>
+      <SideBar show = {open}>
+        <CloseWrapper >
+          <CustomClose onClick={()=>setOpen(false)}/>
+        </CloseWrapper>
         <li><a href="#">Existing Inventory</a></li>
         <li><a href="#">Used Inventory</a></li>
         <li><a href="#">Trade-in</a></li>
@@ -78,6 +83,11 @@ const RightMenu = styled.div`
 const CustomMenu = styled(MenuIcon)`
   cursor: pointer;
 `
+
+const CustomClose =  styled(CloseIcon)
+`
+  cursor: pointer
+`
 const SideBar = styled.div`
   position: fixed;
   top: 0;
@@ -88,4 +98,20 @@ const SideBar = styled.div`
   z-index: 16;
   list-style: none;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  transform: ${props => props.show ? 'translateX(0)': 'translateX(100%)'};
+  li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .2)
+  }
+  a {
+    font-weight: 600;
+  }
+`
+
+const CloseWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
